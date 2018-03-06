@@ -36,7 +36,7 @@
 								{foreach from=$details item=detail}
 										{assign var="count" value=$count + ($detail.quantity|@count)}
 								{/foreach}
-								Total elementos <b>{$details.0.supplier_name|upper}</b>: Total <b>{$count}</b><br/>
+								Total elements of <b>{$details.0.supplier_name|upper}</b>: Total <b>{$count}</b><br/>
 						{/foreach}
 							<br/>
 							{if $supplier_price_to_compare}
@@ -69,7 +69,7 @@
 							{foreach from=$supplier_name key=id item=supplier_brand}
 								<tfoot>
 										<tr>
-												<th><strong style="color:#0684ff">Total {$supplier_brand}</strong> con total de <b>{$count.$id}</b> productos</th>
+												<th><strong style="color:#0684ff">Total {$supplier_brand}</strong> with total of <b>{$count.$id}</b> products</th>
 												<th><strong>--</strong></th>
 												<th><strong>--</strong></th>
 												<th><strong>--</strong></th>
