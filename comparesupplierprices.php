@@ -62,6 +62,19 @@ public function hookDisplayAdminOrder($params) {
           $details = $this->getOrderRowDetails((int) Tools::getValue('id_order'), $val['id_product'], $val['id_product_attribute']);
           $product['wholesale_price'] = $details['purchase_supplier_price'];
           $product['attr_name'] = $val['attributes'];
+        
+        $products[] = $product;
+          $supplier_object = new Supplier($product['id_supplier']);
+          $supplier_name = preg_replace("/[^A-Za-z0-9]/", "", mb_strtolower($supplier_object->name));
+          $products_details[$product['id_supplier']][] = array(
+            'id_product'=>$product['id_product'],
+            'id_product_attribute'=>$val['id_product_attribute'],
+            'name'=>$product['name'],
+            'supplier_name'=> $supplier_name,
+            'reference'=>$val['reference'],
+            'wholesale_price'=>$product['wholesale_price'],
+            'quantity'=>$product['quantity']
+          );
     }   
   }
  }
