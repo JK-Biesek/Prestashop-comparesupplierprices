@@ -52,6 +52,7 @@ public function hookDisplayAdminOrder($params) {
            
     $supplier_total = array();
     $total_supplier_name = array();
+    $count_prod = array()
   
     foreach ($products_temp => $val) {
 
@@ -90,6 +91,11 @@ public function hookDisplayAdminOrder($params) {
               {
                 foreach ($res as $key => $value) {
                 ($product['attr_name'] == '' ? $value['product'] : $value['product'] = $value['product'].' : '.$product['attr_name']); //ternary operator 
+                 
+                 $supplier_price_to_compare[$value['id_product'].'_'.$value['id_product_attribute']][] = $value;
+                 $count_prod[$value['id_supplier']] = $count_prod[$value['id_supplier']] + count($value['id_product']);
+                 $supplier_total[$value['id_supplier']] = $supplier_total[$value['id_supplier']]+$value['product_supplier_price_te'];
+                 $total_supplier_name[$value['id_supplier']] = $value['name'];   
              }       
           }            
        }
