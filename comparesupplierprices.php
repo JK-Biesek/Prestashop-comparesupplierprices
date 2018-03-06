@@ -86,7 +86,13 @@ public function hookDisplayAdminOrder($params) {
                WHERE ps.id_product = '.$product['id_product'].'
                AND ps.id_product_attribute = '.$val['id_product_attribute'].' and l.id_lang=1 group by s.id_supplier';
               $res = Db::getInstance()->executeS($sql);
-        }
+            if(count($res) > 1)
+              {
+                foreach ($res as $key => $value) {
+                ($product['attr_name'] == '' ? $value['product'] : $value['product'] = $value['product'].' : '.$product['attr_name']); //ternary operator 
+             }       
+          }            
+       }
     }   
   }
     public function getProdDetails($id_order, $id_product, $id_product_attribute){
