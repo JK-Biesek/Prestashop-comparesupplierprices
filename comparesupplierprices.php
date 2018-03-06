@@ -59,7 +59,7 @@ public function hookDisplayAdminOrder($params) {
           $product['price'] = $val['price'];
           $product['supplier_reference'] = $val['supplier_reference'];
           $product['id_supplier'] = $val['id_supplier'];
-          $details = $this->getOrderRowDetails((int) Tools::getValue('id_order'), $val['id_product'], $val['id_product_attribute']);
+          $details = $this->getProdDetails((int) Tools::getValue('id_order'), $val['id_product'], $val['id_product_attribute']);
           $product['wholesale_price'] = $details['purchase_supplier_price'];
           $product['attr_name'] = $val['attributes'];
         
@@ -76,5 +76,16 @@ public function hookDisplayAdminOrder($params) {
             'quantity'=>$product['quantity']
           );
     }   
+  }
+    public function getProdDetails($id_order, $id_product, $id_product_attribute){
+          $db = Db::getInstance();
+
+          $sql = "SELECT * FROM "._DB_PREFIX_."order_detail
+                  WHERE id_order=".$id_order. "
+                  AND product_id=".$id_product. "
+                  AND product_attribute_id=".$id_product_attribute;
+
+          if ($row = Db::getInstance()->getRow($sql))
+                return $row;
   }
  }
