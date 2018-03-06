@@ -52,9 +52,9 @@ public function hookDisplayAdminOrder($params) {
            
     $supplier_total = array();
     $total_supplier_name = array();
-    $count_prod = array()
+    $count_prod = array();
   
-    foreach ($products_temp => $val) {
+    foreach ($products_temp as $val) {
 
           $product = array();
           $product['id_product'] = $val['id_product'];
