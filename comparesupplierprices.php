@@ -110,7 +110,7 @@ public function hookDisplayAdminOrder($params) {
                       'count' =>$count_prod
                   )
           );
-      return $this->display(__FILE__, 'benefitinorder.tpl');
+      return $this->display(__FILE__, 'comparesupplierprices.tpl');
   }
     public function getProdDetails($id_order, $id_product, $id_product_attribute){
           $db = Db::getInstance();
