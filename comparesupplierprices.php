@@ -99,7 +99,18 @@ public function hookDisplayAdminOrder($params) {
              }       
           }            
        }
-    }   
+    } 
+    $this->smarty->assign(
+                  array(
+                      'products_temp' => $products_temp,
+                      'supplier_name' => $total_supplier_name,
+                      'sup_prod_details' => $products_details,
+                      'supplier_price_to_compare' => $supplier_price_to_compare,
+                      'provedor_total' => $prov_total,
+                      'contar' =>$count_prod
+                  )
+          );
+      return $this->display(__FILE__, 'benefitinorder.tpl');
   }
     public function getProdDetails($id_order, $id_product, $id_product_attribute){
           $db = Db::getInstance();
