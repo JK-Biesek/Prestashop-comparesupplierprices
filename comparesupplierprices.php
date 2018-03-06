@@ -67,7 +67,7 @@ public function hookDisplayAdminOrder($params) {
           $product['wholesale_price'] = $details['purchase_supplier_price'];
           $product['attr_name'] = $val['attributes'];
         
-        $products[] = $product;
+          $products[] = $product;
           $supplier_object = new Supplier($product['id_supplier']);
           $supplier_name = preg_replace("/[^A-Za-z0-9]/", "", mb_strtolower($supplier_object->name));
           $products_details[$product['id_supplier']][] = array(
@@ -106,8 +106,8 @@ public function hookDisplayAdminOrder($params) {
                       'supplier_name' => $total_supplier_name,
                       'sup_prod_details' => $products_details,
                       'supplier_price_to_compare' => $supplier_price_to_compare,
-                      'provedor_total' => $prov_total,
-                      'contar' =>$count_prod
+                      'supplier_totals' => $supplier_total,
+                      'count' =>$count_prod
                   )
           );
       return $this->display(__FILE__, 'benefitinorder.tpl');
