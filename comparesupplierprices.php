@@ -49,7 +49,10 @@ public function hookDisplayAdminOrder($params) {
     $products_temp = $cart->getProducts();
     $products= array();
     $id_customer = $this->context->customer->id;
-    
+           
+    $supplier_total = array();
+    $total_supplier_name = array();
+  
     foreach ($products_temp => $val) {
 
           $product = array();
@@ -75,6 +78,15 @@ public function hookDisplayAdminOrder($params) {
             'wholesale_price'=>$product['wholesale_price'],
             'quantity'=>$product['quantity']
           );
+        
+        if($product != 0 ){
+               $sql = 'SELECT ps.*,s.name,l.name as product,l.id_lang FROM ' . _DB_PREFIX_ . 'product_supplier ps
+               INNER join ps_supplier s on ps.id_supplier = s.id_supplier
+               INNER join ps_product_lang l on ps.id_product = l.id_product
+               WHERE ps.id_product = '.$product['id_product'].'
+               AND ps.id_product_attribute = '.$val['id_product_attribute'].' and l.id_lang=1 group by s.id_supplier';
+              $res = Db::getInstance()->executeS($sql);
+        }
     }   
   }
     public function getProdDetails($id_order, $id_product, $id_product_attribute){
